@@ -17,7 +17,7 @@ public class Spreadsheet {
 	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 	private final Table table = new Table();
-	private final String divisionByZeroCellString = "Бесконечность";
+	private final String divisionByZeroCellString = "Infinity";
 
 	public void set(Position position, String value) {
 		try {
@@ -35,7 +35,7 @@ public class Spreadsheet {
 		try {
 			Tree tree = Tree.createFromScanner(new Scanner(value).useDelimiter(" "), NodeType.ANY);
 			if (tree.getType() == null) {
-				throw new RuntimeException("Неверно задана формула");
+				throw new RuntimeException("Invalid formula given");
 			}
 			table.setCell(position, new CellFormula(tree, position));
 		} catch (RuntimeException runtimeException) {
@@ -90,20 +90,20 @@ public class Spreadsheet {
 							cellTypesString.append(", ");
 						}
 					}
-					throw new RuntimeException("совмещены операции с несколькими типами: " + cellTypesString);
+					throw new RuntimeException("combined operations with several types: " + cellTypesString);
 				} else {
 					CellType cellType = determinedCellTypes.iterator().next();
 					if (cellType == CellType.DATE && cellFormula.getTree().getReference() == null) {
-						throw new RuntimeException("операции даты с датой не доступны");
+						throw new RuntimeException("date operations with a date are not available");
 					} else if (cellType == CellType.STRING && cellFormula.getTree().getReference() == null) {
-						throw new RuntimeException("математические операции над строками не допустимы");
+						throw new RuntimeException("mathematical operations on strings are not allowed");
 					} else {
 						cellFormula.getTree().setValueType(cellType);
 					}
 				}
 			} catch (RuntimeException runtimeException) {
 				result = false;
-				Printer.printLineError("При расчёте формулы в ячейке " + cellFormula.getPosition().toString() + ": " + runtimeException.getMessage());
+				Printer.printLineError("When calculating the formula in a cell " + cellFormula.getPosition().toString() + ": " + runtimeException.getMessage());
 			}
 		}
 
@@ -238,7 +238,7 @@ public class Spreadsheet {
 			if (table.containsCell(reference)) {
 				Cell referencedCell = table.getCell(reference);
 				if (referencedCells.contains(referencedCell)) {
-					throw new RuntimeException("Обнаружена ссылка на саму себя");
+					throw new RuntimeException("A link to yourself was found");
 				}
 				referencedCells.add(referencedCell);
 				if (referencedCell.getType() == CellType.FORMULA) {
@@ -253,7 +253,7 @@ public class Spreadsheet {
 					tree.setValueType(referencedCell.getType());
 				}
 			} else {
-				throw new RuntimeException("Обнаружена ссылка на неназначенную ячейку: " + reference.toString());
+				throw new RuntimeException("A reference to an unassigned cell was found: " + reference.toString());
 			}
 		} else if (tree.getNumberValue() != null) {
 			tree.setValueType(CellType.NUMBER);

@@ -125,7 +125,7 @@ public class Tree implements IBinaryTree, ITypedTree, INumberNodeSupport, ITimes
 					Date daveValue = Spreadsheet.dateFormat.parse(part);
 					result.setTimestampValue(daveValue.getTime());
 				} catch (ParseException parseException) {
-					throw new RuntimeException("Обнаружен строковый литерал в формуле: " + part);
+					throw new RuntimeException("A string literal is found in the formula: " + part);
 				}
 			}
 		}

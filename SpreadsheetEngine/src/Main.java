@@ -12,14 +12,14 @@ public class Main {
 		keyboard.useDelimiter("\n");
 		Spreadsheet spreadsheet = new Spreadsheet();
 
-		System.out.println("Добро пожаловать в движок электронной таблицы!");
+		System.out.println("Welcom!");
 		boolean work = true;
 		while (work) {
 			System.out.print("> ");
 			String[] splitInput = keyboard.next().split(" ");
 			Command command = Command.createFromString(splitInput[0]);
 			if (command == null) {
-				System.out.printf("Неизвестная команда: %s\n", splitInput[0]);
+				System.out.printf("Unknown command: %s\n", splitInput[0]);
 				continue;
 			}
 			if (!command.isEnoughArgumentCount(splitInput.length)) {
@@ -76,7 +76,7 @@ public class Main {
 				}
 			}
 		}
-		System.out.println("До скорого!");
+		System.out.println("Goodbye");
 	}
 
 	private static StringBuilder buildFormula(String[] splitInput) {

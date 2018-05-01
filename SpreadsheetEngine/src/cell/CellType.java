@@ -1,10 +1,10 @@
 package cell;
 
 public enum CellType {
-	NUMBER("число"),
-	STRING("строка"),
-	DATE("дата"),
-	FORMULA("формула");
+	NUMBER("number"),
+	STRING("string"),
+	DATE("data"),
+	FORMULA("formula");
 
 	private final String string;
 
