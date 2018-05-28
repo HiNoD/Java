@@ -33,6 +33,7 @@ public class Logger {
 
     public void customerTake(LocalTime time, String name, String productName, BigDecimal quantity) {
         String msg = "Customer '" + name + "' picked up " + quantity + " units of " + productName;
+
         printMessage(time, msg);
     }
 

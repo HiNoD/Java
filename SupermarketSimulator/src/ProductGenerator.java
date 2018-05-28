@@ -9,17 +9,15 @@ public class ProductGenerator {
     private static final double MIN_PRICE = 20.00;
 
     private static final List<String> ITEM = Arrays.asList(
-            "Milk", "Bread", "Vodka", "Chocolate", "Ice-Cream",
-            "Beer", "Wine", "Chips", "Cigarette", "Cigar"
+            "Milk", "Bread", "Vodka", "Chocolate", "Ice-Cream", "Beer", "Wine", "Chips", "Cigarette"
     );
 
     private static final List<String> MASS = Arrays.asList(
-            "Potato", "Chicken", "Sugar", "Turkey", "Banana",
-            "Apple", "Orange", "Kiwi", "Sausage", "Salad"
+            "Potato", "Chicken", "Sugar", "Banana", "Apple", "Orange", "Kiwi", "Sausage", "Salad"
     );
 
     private static final List<String> FOR_ADULT = Arrays.asList(
-            "Vodka", "Beer", "Wine", "Cigarette", "Cigar"
+            "Vodka", "Beer", "Wine", "Cigarette"
     );
 
     private static Random rn = new Random();

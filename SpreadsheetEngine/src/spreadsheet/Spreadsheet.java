@@ -38,6 +38,9 @@ public class Spreadsheet {
 				throw new RuntimeException("Invalid formula given");
 			}
 			table.setCell(position, new CellFormula(tree, position));
+			if (!areValidFormulaCells()) {
+				table.setCell(position, new CellString("0", position));
+			}
 		} catch (RuntimeException runtimeException) {
 			Printer.printLineError(runtimeException.getMessage());
 		}
@@ -45,9 +48,6 @@ public class Spreadsheet {
 
 	public void display() {
 		if (table.isEmpty()) {
-			return;
-		}
-		if (!areValidFormulaCells()) {
 			return;
 		}
 		int maxValueLength = getMaxValueLength();

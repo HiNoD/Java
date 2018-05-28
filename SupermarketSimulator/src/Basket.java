@@ -19,7 +19,9 @@ public class Basket {
     }
 
     public void add(Product product, BigDecimal quantity) {
+        Report rep = new Report();
         BigDecimal currQuantity = products.getOrDefault(product, BigDecimal.ZERO);
+        rep.addProducts(product, quantity);
         products.put(product, currQuantity.add(quantity));
     }
 
@@ -29,5 +31,6 @@ public class Basket {
             products.remove(product);
         }
     }
+
 
 }
